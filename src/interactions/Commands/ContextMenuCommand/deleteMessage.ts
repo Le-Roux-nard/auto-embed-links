@@ -20,7 +20,7 @@ export default {
 		const channel = (await interaction.guild?.channels.fetch(interaction.channelId)) as GuildTextBasedChannel;
 		const message = await channel?.messages.fetch(interaction.targetId).catch(() => null);
 
-		if(!message){
+		if (!message) {
 			interaction.reply({
 				content: "Je ne peux pas lire ce salon ou je n'ai pas accès à ce message",
 				ephemeral: true,
@@ -51,7 +51,7 @@ export default {
 			member?.permissionsIn(channel).has("ManageMessages") ||
 			invisibleMessageAuthorId === IdToInvisibleChars.translate(interaction.user.id)
 		) {
-			myWebhook.deleteMessage(message);
+			myWebhook.deleteMessage(message, channel.isThread() ? channel.id : undefined);
 			interaction.reply({
 				content: "Message supprimé",
 				ephemeral: true,
