@@ -7,7 +7,7 @@ const IdToInvisibleChars = NumberToInvisibleChar;
 // 	/https?:\/\/(?:www\.)?(?<domain>(twitter|x)\.com|(?:vm\.)?tiktok\.com)\/(?:(?<=(?:twitter|x)\.com\/)(.+?\/status\/\d+)|(?<=vm\.tiktok\.com\/)(.+?\b\/)|(?<=tiktok\.com\/)(@[A-Za-z_0-9]+\/video\/\d+))/gim;
 
 export default async (client: Client, message: Message) => {
-	if (!message.channel || message.channel.type === ChannelType.DM || !!message.webhookId) return;
+	if (!message.channel || message.channel.isDMBased() || !!message.webhookId) return;
 	let content = message.content;
 
 	const channel = (await client.channels.fetch(message.channel.id)) as Exclude<GuildTextBasedChannel, ThreadChannel>;
