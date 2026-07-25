@@ -5,6 +5,6 @@ export default class RedditMatcher implements Matcher {
 
 	exec(str: string): string {
 		if(!this.testRegex.test(str)) return str;
-		return str.replace("reddit.com", "rxddit.com");
+		return str.replace("reddit.com", "vxreddit.com");
 	}
 }
